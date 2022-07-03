@@ -11,7 +11,7 @@ struct Authorization: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.bottom, 25)
-                .padding(.top, 210)
+                .padding(.top, 100)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("Логин")
@@ -65,8 +65,9 @@ struct Authorization: View {
                 Button(action: {}){
                     Image.init("vk_logo")
                 }
-            }.padding(.top, 100)
-                .padding(.bottom, 20)
+            }
+            .padding(.bottom, 20)
+            .padding(.top, 50)
         }
     }
 }
