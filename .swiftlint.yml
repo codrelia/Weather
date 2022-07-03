@@ -1,0 +1,11 @@
+disabled_rules: # rule identifiers to exclude from running
+ - function_parameter_count
+ - force_cast
+ - file_length
+ - trailing_whitespace
+ - line_length
+ - variable_name
+ - type_body_length
+ - type_name
+ - cyclomatic_complexity
+ - force_try
