@@ -8,31 +8,31 @@ struct Authorization: View {
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             Text("Авторизация")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                .font(.custom("Montserrat-Medium", size: 24))
                 .padding(.bottom, 25)
                 .padding(.top, 100)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("Логин")
-                    .font(.headline)
-                    .fontWeight(.light)
+                    .font(.custom("Montserrat-Regular", size: 12))
                     .multilineTextAlignment(.leading)
                 
                 TextField("Введите логин", text: $username)
                     .disableAutocorrection(true)
+                    .font(.custom("Montserrat-Regular", size: 12))
                 Divider()
                 
             }.padding([.leading, .trailing], 20)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("Пароль")
-                    .font(.headline)
-                    .fontWeight(.light)
+                    .font(.custom("Montserrat-Regular", size: 12))
                     .multilineTextAlignment(.leading)
                 
                 SecureField("Введите пароль", text: $password)
                     .disableAutocorrection(true)
+                    .font(.custom("Montserrat-Regular", size: 12))
+                
                 Divider()
             }.padding([.leading, .trailing], 20)
             
@@ -43,7 +43,7 @@ struct Authorization: View {
                     Text("Войти").padding([.leading, .trailing], 60)
                         .padding([.top, .bottom], 5)
                         .foregroundColor(.white)
-                        .font(.headline)
+                        .font(.custom("Montserrat-Medium", size: 12))
                     
                 }
                 .buttonStyle(.bordered)
@@ -53,15 +53,15 @@ struct Authorization: View {
             HStack(alignment: .center, spacing: 90) {
                 Button(action: {}) {
                     Text("У меня нет аккаунта")
-                        .font(.system(size: 12, weight: .light, design: .default))
+                        .font(.custom("Montserrat-Medium", size: 12))
                 }
                 Button(action: {}) {                    Text("Вспомнить пароль")
-                        .font(.system(size: 12, weight: .light, design: .default))
+                        .font(.custom("Montserrat-Medium", size: 12))
                 }
             }.padding(.top, 10)
             VStack{
                 Text("Войти с другим аккаунтом")
-                    .font(.system(size: 12, weight: .light, design: .default))
+                    .font(.custom("Montserrat-Regular", size: 12))
                 Button(action: {}){
                     Image.init("vk_logo")
                 }

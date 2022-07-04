@@ -14,6 +14,7 @@
 		3B5725AA286228F8009FA225 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5725A9286228F8009FA225 /* Authorization.swift */; };
 		3B5725AC286228F9009FA225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B5725AB286228F9009FA225 /* Assets.xcassets */; };
 		3B5725AF286228F9009FA225 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B5725AE286228F9009FA225 /* Preview Assets.xcassets */; };
+		3BB19855287325AA0072D0D8 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 3BB19854287325AA0072D0D8 /* Fonts */; };
 		618E5BFCFE09785DEC23E708 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BFFA7A52FD2A8EB7A16E5C /* Pods_Weather.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,8 @@
 		3B5725A9286228F8009FA225 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		3B5725AB286228F9009FA225 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B5725AE286228F9009FA225 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3BB19853287325900072D0D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BB19854287325AA0072D0D8 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		479DD87FBAB8520CCD6030EC /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +92,8 @@
 		3B5725A6286228F8009FA225 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				3BB19854287325AA0072D0D8 /* Fonts */,
+				3BB19853287325900072D0D8 /* Info.plist */,
 				3B19643C28721A1100648DD3 /* Models */,
 				3B19643B287219BC00648DD3 /* ViewModels */,
 				3B19643A287219A900648DD3 /* Views */,
@@ -185,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BB19855287325AA0072D0D8 /* Fonts in Resources */,
 				3B5725AF286228F9009FA225 /* Preview Assets.xcassets in Resources */,
 				3B5725AC286228F9009FA225 /* Assets.xcassets in Resources */,
 			);
@@ -394,6 +400,7 @@
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Weather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,6 +433,7 @@
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Weather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
