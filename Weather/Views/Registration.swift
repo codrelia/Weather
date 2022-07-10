@@ -5,9 +5,14 @@ struct Registration: View {
     @State private var password: String = ""
     @State private var redoPassword: String = ""
     
+    @State private var isNewView = false
+    
     @State private var isActiveText = false
     
     @Environment(\.presentationMode) var presentation
+    
+    let montserratRegular = Font.custom("Montserrat-Regular", size: 12)
+    let montserratMedium = Font.custom("Montserrat-Medium", size: 12)
     
     var body: some View {
         NavigationView {
@@ -19,41 +24,41 @@ struct Registration: View {
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Логин")
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                         .multilineTextAlignment(.leading)
                     
                     TextField("Введите логин", text: $username)
                         .disableAutocorrection(true)
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                     Divider()
                     
                 }.padding([.leading, .trailing], 20)
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Пароль")
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                         .multilineTextAlignment(.leading)
                     
                     SecureField("Введите пароль", text: $password)
                         .disableAutocorrection(true)
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                     
                     Divider()
                 }.padding([.leading, .trailing], 20)
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Повторите пароль")
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                         .multilineTextAlignment(.leading)
                     
                     SecureField("Ещё раз введите пароль", text: $redoPassword)
                         .disableAutocorrection(true)
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
             
                     Divider()
                     if (redoPassword != password && redoPassword != "") {
                         Text("Пароли не совпадают")
-                            .font(.custom("Montserrat-Regular", size: 12))
+                            .font(montserratRegular)
                             .foregroundColor(.red)
                     }
                 }.padding([.leading, .trailing], 20)
@@ -66,7 +71,7 @@ struct Registration: View {
                             Text("Зарегистрироваться").padding([.leading, .trailing], 60)
                                 .padding([.top, .bottom], 5)
                                 .foregroundColor(.white)
-                                .font(.custom("Montserrat-Medium", size: 12))
+                                .font(montserratMedium)
                             
                         }
                         .buttonStyle(.bordered)
@@ -75,26 +80,30 @@ struct Registration: View {
                         .disabled(true)
                     }
                     else {
+                        NavigationLink(destination: WeatherGeneral().navigationBarBackButtonHidden(true), isActive: $isNewView) {
                         Button(action: {
                             if (userViewModel.isIdenticalNames(username)) {
                                 isActiveText = true
+                                isNewView = false
                             } else {
                                 isActiveText = false
+                                isNewView = true
                                 userViewModel.addNewAccount(username, password)
                             }
                         }){
                             Text("Зарегистрироваться").padding([.leading, .trailing], 60)
                                 .padding([.top, .bottom], 5)
                                 .foregroundColor(.white)
-                                .font(.custom("Montserrat-Medium", size: 12))
+                                .font(montserratMedium)
                             
                         }
                         .buttonStyle(.bordered)
                         .background(Color.blue)
                         .cornerRadius(5)
                     }
+                    }
                     Text(isActiveText == true ? "Имя пользователя уже существует" : "")
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                         .foregroundColor(.red)
                 }.padding(.top, 10)
                 HStack(alignment: .center, spacing: 90) {
@@ -102,7 +111,7 @@ struct Registration: View {
                         self.presentation.wrappedValue.dismiss()
                     }) {
                         Text("У меня есть аккаунт")
-                            .font(.custom("Montserrat-Medium", size: 12))
+                            .font(montserratMedium)
                     }
                 }.padding(.top, 10)
             }

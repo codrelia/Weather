@@ -1,8 +1,20 @@
 import SwiftUI
 
 struct WeatherGeneral: View {
+    @ObservedObject var locationManager = LocationManager.shared
+    
     var body: some View {
-        Text("Тут должна быть погода")
+        Group {
+            if locationManager.userLocation == nil {
+                Button(action: {
+                    LocationManager.shared.requestLocation()
+                }) {
+                    Text("Изменить геопозицию")
+                }
+            } else if let location = locationManager.userLocation {
+                Text("\(location)")
+            }
+        }
     }
 }
 

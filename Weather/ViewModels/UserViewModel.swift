@@ -31,7 +31,7 @@ class UserViewModel: ObservableObject {
                 return true
             }
         }
-        return false;
+        return false
     }
     
     func read() {
@@ -59,6 +59,6 @@ class UserViewModel: ObservableObject {
                 return true
             }
         }
-        return false;
+        return false
     }
 }

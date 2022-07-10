@@ -10,6 +10,9 @@ struct Authorization: View {
     @State private var isFoundOfUser = true
     @State private var isNewView = false
     
+    let montserratRegular = Font.custom("Montserrat-Regular", size: 12)
+    let montserratMedium = Font.custom("Montserrat-Medium", size: 12)
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
@@ -20,24 +23,24 @@ struct Authorization: View {
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Логин")
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                         .multilineTextAlignment(.leading)
                     
                     TextField("Введите логин", text: $username)
                         .disableAutocorrection(true)
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                     Divider()
                     
                 }.padding([.leading, .trailing], 20)
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Пароль")
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                         .multilineTextAlignment(.leading)
                     
                     SecureField("Введите пароль", text: $password)
                         .disableAutocorrection(true)
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                     
                     Divider()
                 }.padding([.leading, .trailing], 20)
@@ -50,7 +53,7 @@ struct Authorization: View {
                             Text("Войти").padding([.leading, .trailing], 60)
                                 .padding([.top, .bottom], 5)
                                 .foregroundColor(.white)
-                                .font(.custom("Montserrat-Medium", size: 12))
+                                .font(montserratRegular)
                             
                         }
                         .buttonStyle(.bordered)
@@ -72,7 +75,7 @@ struct Authorization: View {
                                 Text("Войти").padding([.leading, .trailing], 60)
                                     .padding([.top, .bottom], 5)
                                     .foregroundColor(.white)
-                                    .font(.custom("Montserrat-Medium", size: 12))
+                                    .font(montserratMedium)
                                 
                             }
                             .buttonStyle(.bordered)
@@ -80,7 +83,7 @@ struct Authorization: View {
                             .cornerRadius(5)
                         }
                         Text(isFoundOfUser == true ? "" : "Пользователь не найден или пароль неверный")
-                            .font(.custom("Montserrat-Regular", size: 12))
+                            .font(montserratRegular)
                             .foregroundColor(.red)
                     }
                     
@@ -91,16 +94,16 @@ struct Authorization: View {
                                 self.selection = 1
                             }) {
                                 Text("У меня нет аккаунта")
-                                    .font(.custom("Montserrat-Medium", size: 12))
+                                    .font(montserratMedium)
                             }
                         }
                         Button(action: {}) {                    Text("Вспомнить пароль")
-                                .font(.custom("Montserrat-Medium", size: 12))
+                                .font(montserratMedium)
                         }
                     }.padding(.top, 10)
                 VStack{
                     Text("Войти с другим аккаунтом")
-                        .font(.custom("Montserrat-Regular", size: 12))
+                        .font(montserratRegular)
                     Button(action: {}){
                         Image.init("vk_logo")
                     }
