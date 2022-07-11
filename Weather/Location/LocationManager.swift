@@ -1,10 +1,10 @@
 import CoreLocation
+import MapKit
 
 class LocationManager: NSObject, ObservableObject {
     private let manager = CLLocationManager()
     @Published var userLocation: CLLocation?
     static let shared = LocationManager()
-    
     
     override init() {
         super.init()
@@ -16,25 +16,26 @@ class LocationManager: NSObject, ObservableObject {
     func requestLocation() {
         manager.requestWhenInUseAuthorization()
     }
+    
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
-            print("не определно")
+            print("Not Determined")
         case .restricted:
-            print("ограничено")
+            print("Restricted")
         case .denied:
-            print("запрещено")
+            print("Denied")
         case .authorizedAlways:
-            print("всегда")
+            print("Always")
         case .authorizedWhenInUse:
-            print("когда используется")
+            print("When in use")
         case .authorized:
-            print("authorized")
+            print("Authorized")
         @unknown default:
-            print("неизвестно")
+            print("Unknow")
         }
     }
     
