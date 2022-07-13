@@ -4,6 +4,7 @@ import Swinject
 struct Weather: Decodable {
     let now_dt: String
     let info: Info
+    let geo_object: GeoObject
     let fact: Fact
     let forecasts: [Forecast]
 }
@@ -14,6 +15,15 @@ struct Info: Decodable {
 
 struct Tzinfo: Decodable {
     let offset: Int
+    let name: String
+}
+
+struct GeoObject: Decodable {
+    let locality: Country
+}
+
+struct Country: Decodable {
+    let id: Int
     let name: String
 }
 
@@ -86,7 +96,7 @@ enum Daytime: String, Codable {
     case n = "n"
 }
 
-func fetchWeather(longitude: Double, latitude: Double){
+func fetchWeather(longitude: Double, latitude: Double, dataTracking: DataTracking) {
     let urlString = "https://api.weather.yandex.ru/v2/forecast?lat=\(String(describing: latitude))&lon=\(String(describing: longitude))&extra=true"
     guard let url = URL(string: urlString) else { return }
     
@@ -100,16 +110,15 @@ func fetchWeather(longitude: Double, latitude: Double){
             return
         }
         if let weather = parseJSON(withData: data) {
-            weathers = weather
+            dataTracking.updateValue(newWeathers: weather)
         }
     }
     task.resume()
 }
 
 func parseJSON(withData data: Data) -> WeatherGeneralViewModel? {
-    let decoder = JSONDecoder()
     do {
-        let weatherData = try decoder.decode(Weather.self, from: data)
+        let weatherData = try JSONDecoder().decode(Weather.self, from: data)
         let weather = WeatherGeneralViewModel(weather: weatherData)
         return weather
     } catch let error as NSError {

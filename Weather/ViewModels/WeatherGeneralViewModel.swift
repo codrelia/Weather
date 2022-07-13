@@ -1,6 +1,12 @@
 import Foundation
 
-var weathers: WeatherGeneralViewModel? = nil
+class DataTracking: ObservableObject {
+    @Published var weathers: WeatherGeneralViewModel? = nil
+    
+    func updateValue(newWeathers: WeatherGeneralViewModel?) {
+        weathers = newWeathers
+    }
+}
 
 struct WeatherGeneralViewModel {
     var currentHour: Int
@@ -51,7 +57,7 @@ struct WeatherGeneralViewModel {
         substring.removeFirst()
         substring.removeLast()
         
-        name = weather.info.tzinfo.name
+        name = weather.geo_object.locality.name
         currentHour = Int(substring)! + weather.info.tzinfo.offset / 3600
         detailedWeather.append(WeatherGeneralMiniVersion(hour: 1, temperature: 15, condition: "cloudy"))
     }
@@ -67,4 +73,13 @@ struct WeatherGeneralMiniVersion {
         self.temperature = temperature
         self.condition = condition
     }
+}
+
+func readingDataOfWeather(dataTracking: DataTracking) -> Bool {
+    LocationManager.shared.requestLocation()
+    if LocationManager.shared.userLocation != nil {
+        fetchWeather(longitude: LocationManager.shared.userLocation!.coordinate.longitude, latitude: LocationManager.shared.userLocation!.coordinate.latitude, dataTracking: dataTracking)
+        return true
+    }
+    return false
 }

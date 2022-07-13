@@ -1,36 +1,33 @@
 import SwiftUI
 
 struct WeatherGeneral: View {
-    @ObservedObject var locationManager = LocationManager.shared
-    
+    var locationManager = LocationManager.shared
     let montserratRegular = Font.custom("Montserrat-Regular", size: 12)
     let montserratMedium = Font.custom("Montserrat-Medium", size: 12)
-    
-    init() {
-        LocationManager.shared.requestLocation()
-        if locationManager.userLocation != nil {
-            fetchWeather(longitude: locationManager.userLocation!.coordinate.longitude, latitude: locationManager.userLocation!.coordinate.latitude)
-        }
-    }
+    @ObservedObject var data = DataTracking()
     
     var body: some View {
         Group {
-            if locationManager.userLocation == nil {
+            if readingDataOfWeather(dataTracking: data) == false {
                 Text("Зайдите в настройки для определения геопозиции")
                     .font(montserratRegular)
             } else {
-                VStack {
-                    Text("\(weathers!.name)")
-                    HStack {
-                        Text("\(weathers!.temperature)°")
-                        Text("\(weathers!.condition)")
+                if data.weathers != nil {
+                    VStack {
+                        Text("\(data.weathers!.name)")
+                        HStack {
+                            Text("\(data.weathers!.temperature)°")
+                            Text("\(data.weathers!.condition)")
+                        }
+                        HStack {
+                            Text("\(data.weathers!.windSpeed) м/с")
+                            Text("\(data.weathers!.presureMm) мм.рт.с.")
+                        }
                     }
-                    HStack {
-                        Text("\(weathers!.windSpeed) м/с")
-                        Text ("\(weathers!.presureMm) мм.рт.с.")
-                    }
+                } else {
+                    Text("Ошибка загрузки данных!")
+                        .font(montserratRegular)
                 }
-                
             }
         }
     }
