@@ -1,10 +1,13 @@
 import Foundation
 
 class DataTracking: ObservableObject {
-    @Published var weathers: WeatherGeneralViewModel? = nil
+    @Published var weathers: WeatherGeneralViewModel?
+    @Published var currentStatus: Bool = false
     
     func updateValue(newWeathers: WeatherGeneralViewModel?) {
         weathers = newWeathers
+        currentStatus = true
+        print(weathers)
     }
 }
 
@@ -15,9 +18,7 @@ struct WeatherGeneralViewModel {
     var temperature: Int
     var condition: String
     var presureMm: Int
-    var windSpeed: Double
-    
-    var detailedWeather: [WeatherGeneralMiniVersion] = []
+    var windSpeed: Int
     
     var conditionString: String {
         switch condition {
@@ -49,7 +50,7 @@ struct WeatherGeneralViewModel {
         temperature = weather.fact.temp
         condition = weather.fact.condition.rawValue
         presureMm = weather.fact.pressureMm
-        windSpeed = weather.fact.windSpeed
+        windSpeed = Int(round(weather.fact.windSpeed))
         
         let indexOfTime = weather.now_dt.firstIndex(of: "T")!
         let indexOfColon = weather.now_dt.firstIndex(of: ":")!
@@ -59,24 +60,16 @@ struct WeatherGeneralViewModel {
         
         name = weather.geo_object.locality.name
         currentHour = Int(substring)! + weather.info.tzinfo.offset / 3600
-        detailedWeather.append(WeatherGeneralMiniVersion(hour: 1, temperature: 15, condition: "cloudy"))
-    }
-}
-
-struct WeatherGeneralMiniVersion {
-    var hour: Int
-    var temperature: Int
-    var condition: String
-    
-    init(hour: Int, temperature: Int, condition: String) {
-        self.hour = hour
-        self.temperature = temperature
-        self.condition = condition
+        
+        insertDetailWeather(weather: weather, currentHour: currentHour)
     }
 }
 
 func readingDataOfWeather(dataTracking: DataTracking) -> Bool {
     LocationManager.shared.requestLocation()
+    if dataTracking.currentStatus == true {
+        return true
+    }
     if LocationManager.shared.userLocation != nil {
         fetchWeather(longitude: LocationManager.shared.userLocation!.coordinate.longitude, latitude: LocationManager.shared.userLocation!.coordinate.latitude, dataTracking: dataTracking)
         return true
