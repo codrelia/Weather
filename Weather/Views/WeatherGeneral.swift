@@ -4,6 +4,7 @@ struct WeatherGeneral: View {
     var locationManager = LocationManager.shared
     
     @State var isNewView = false
+    @State var isAlert = false
     @ObservedObject var data = DataTracking()
     
     var body: some View {
@@ -15,7 +16,7 @@ struct WeatherGeneral: View {
                         ZStack {
                             Image("background")
                                 .resizable()
-                                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.2)
+                                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.5)
                             Text(data.weathers!.name)
                                 .font(montserratMediumLarge)
                                 .multilineTextAlignment(.center)

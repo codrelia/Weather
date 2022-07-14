@@ -5,8 +5,8 @@ let realm = try! Realm()
 
 var userViewModel: UserViewModel = UserViewModel()
 
-class UserViewModel: ObservableObject {
-    @Published var users: [UserModel] = []
+class UserViewModel {
+    var users: [UserModel] = []
     
     private var model = UserModel()
     
@@ -15,6 +15,7 @@ class UserViewModel: ObservableObject {
     }
     
     func addNewAccount(_ username: String, _ password: String) {
+        model = UserModel()
         model.username = username
         model.password = password
         
@@ -27,7 +28,8 @@ class UserViewModel: ObservableObject {
     
     func accountVerification(_ username: String, _ password: String) -> Bool {
         for i in users {
-            if (i.username == username && i.password == password) {
+            if i.username == username && i.password == password {
+                authData.savingData(username, password)
                 return true
             }
         }
@@ -35,6 +37,7 @@ class UserViewModel: ObservableObject {
     }
     
     func read() {
+        users = []
         let data = realm.objects(UserModel.self)
         for usersFromDB in data {
             users.append(usersFromDB)
@@ -48,6 +51,7 @@ class UserViewModel: ObservableObject {
     }
     
     func deleteAll() {
+        authData.exit()
         try! realm.write {
           realm.deleteAll()
         }
@@ -60,5 +64,28 @@ class UserViewModel: ObservableObject {
             }
         }
         return false
+    }
+    
+    func changeThePassword(_ username: String, _ newPassword: String) {
+        let data = realm.objects(UserModel.self)
+        for usersFromDB in data {
+            Swift.print(usersFromDB)
+            if usersFromDB.username == username {
+                model = usersFromDB
+            }
+        }
+        try! realm.write {
+            realm.delete(model)
+        }
+        model = UserModel()
+        model.username = username
+        model.password = newPassword
+        try! realm.write {
+            realm.add(model)
+        }
+        read()
+        
+        authData.savingData(username, newPassword)
+        
     }
 }

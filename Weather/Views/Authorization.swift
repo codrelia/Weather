@@ -9,6 +9,7 @@ struct Authorization: View {
     
     @State private var isFoundOfUser = true
     @State private var isNewView = false
+    @State private var isNewViewResetPassword = false
     
     var body: some View {
         NavigationView {
@@ -94,11 +95,15 @@ struct Authorization: View {
                                     .font(montserratMedium)
                             }
                         }
-                        Button(action: {}) {                    Text("Вспомнить пароль")
+                        NavigationLink(destination: PasswordChange().navigationBarBackButtonHidden(true), isActive: $isNewViewResetPassword) {
+                        Button(action: {
+                            isNewViewResetPassword = true
+                        }) {                    Text("Вспомнить пароль")
                                 .font(montserratMedium)
                         }
                     }.padding(.top, 10)
-                
+                    }
+                /*
                 VStack{
                     Text("Войти с другим аккаунтом")
                         .font(montserratRegular)
@@ -108,6 +113,7 @@ struct Authorization: View {
                 }
                 .padding(.bottom, 20)
                 .padding(.top, 50)
+                */
             }
         }
     }
