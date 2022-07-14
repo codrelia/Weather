@@ -9,11 +9,20 @@ func insertDetailWeather(weather: Weather, currentHour: Int) {
     }
     detailWeather.append(newValue)
     
-    for i in 1..<4 {
+    var minCount: Int = 0
+    if weather.forecasts.count >= 5 {
+        minCount = 5
+    } else {
+        minCount = weather.forecasts.count
+    }
+    
+    for i in 1..<minCount {
         newValue = DetailWeather(date: weather.forecasts[i].date, hourlyForecast: [])
         for j in 0..<weather.forecasts[i].hours.count {
             newValue.hourlyForecast.append(HourlyForecast(hour: weather.forecasts[i].hours[j].hour, temp: weather.forecasts[i].hours[j].temp, condition: weather.forecasts[i].hours[j].condition, windSpeed: weather.forecasts[i].hours[j].windSpeed, pressureMm: weather.forecasts[i].hours[j].pressureMm))
         }
-        detailWeather.append(newValue)
+        if newValue.hourlyForecast.count != 0 {
+            detailWeather.append(newValue)
+        }
     }
 }

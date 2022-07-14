@@ -17,6 +17,8 @@
 		3B5725AA286228F8009FA225 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5725A9286228F8009FA225 /* Authorization.swift */; };
 		3B5725AC286228F9009FA225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B5725AB286228F9009FA225 /* Assets.xcassets */; };
 		3B5725AF286228F9009FA225 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B5725AE286228F9009FA225 /* Preview Assets.xcassets */; };
+		3B95C0362880641C000564FC /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95C0352880641C000564FC /* AuthorizationViewModel.swift */; };
+		3B95C03828806429000564FC /* WeatherGeneralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95C03728806429000564FC /* WeatherGeneralModel.swift */; };
 		3BB19855287325AA0072D0D8 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 3BB19854287325AA0072D0D8 /* Fonts */; };
 		3BB1985728732CDA0072D0D8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1985628732CDA0072D0D8 /* UserModel.swift */; };
 		3BB1985928732DF40072D0D8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1985828732DF30072D0D8 /* UserViewModel.swift */; };
@@ -39,6 +41,8 @@
 		3B5725A9286228F8009FA225 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		3B5725AB286228F9009FA225 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B5725AE286228F9009FA225 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3B95C0352880641C000564FC /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
+		3B95C03728806429000564FC /* WeatherGeneralModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherGeneralModel.swift; sourceTree = "<group>"; };
 		3BB19853287325900072D0D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BB19854287325AA0072D0D8 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		3BB1985628732CDA0072D0D8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 		3B19643B287219BC00648DD3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3B95C0352880641C000564FC /* AuthorizationViewModel.swift */,
 				3BB1985828732DF30072D0D8 /* UserViewModel.swift */,
 				3B493A3A287EEAE400A1C534 /* WeatherGeneralViewModel.swift */,
 				3B493A56287F272A00A1C534 /* WeatherDetailViewModel.swift */,
@@ -85,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				3BB1985628732CDA0072D0D8 /* UserModel.swift */,
+				3B95C03728806429000564FC /* WeatherGeneralModel.swift */,
 				3BEBEF43287B160400929204 /* ApiModel.swift */,
 				3B493A5A287F2CAF00A1C534 /* WeatherDetailModel.swift */,
 			);
@@ -291,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B5725AA286228F8009FA225 /* Authorization.swift in Sources */,
+				3B95C0362880641C000564FC /* AuthorizationViewModel.swift in Sources */,
 				3B19644228721D2900648DD3 /* WeatherDetail.swift in Sources */,
 				3B19644028721D1C00648DD3 /* WeatherGeneral.swift in Sources */,
 				3B19643E28721CEC00648DD3 /* Registration.swift in Sources */,
@@ -298,6 +305,7 @@
 				3B493A57287F272A00A1C534 /* WeatherDetailViewModel.swift in Sources */,
 				3BEBEF42287B05ED00929204 /* LocationManager.swift in Sources */,
 				3BB1985728732CDA0072D0D8 /* UserModel.swift in Sources */,
+				3B95C03828806429000564FC /* WeatherGeneralModel.swift in Sources */,
 				3BB1985928732DF40072D0D8 /* UserViewModel.swift in Sources */,
 				3BEBEF44287B160500929204 /* ApiModel.swift in Sources */,
 				3B5725A8286228F8009FA225 /* WeatherApp.swift in Sources */,

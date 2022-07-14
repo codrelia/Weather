@@ -10,9 +10,6 @@ struct Authorization: View {
     @State private var isFoundOfUser = true
     @State private var isNewView = false
     
-    let montserratRegular = Font.custom("Montserrat-Regular", size: 12)
-    let montserratMedium = Font.custom("Montserrat-Medium", size: 12)
-    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
@@ -101,6 +98,7 @@ struct Authorization: View {
                                 .font(montserratMedium)
                         }
                     }.padding(.top, 10)
+                
                 VStack{
                     Text("Войти с другим аккаунтом")
                         .font(montserratRegular)

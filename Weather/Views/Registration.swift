@@ -11,9 +11,6 @@ struct Registration: View {
     
     @Environment(\.presentationMode) var presentation
     
-    let montserratRegular = Font.custom("Montserrat-Regular", size: 12)
-    let montserratMedium = Font.custom("Montserrat-Medium", size: 12)
-    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
