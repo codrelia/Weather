@@ -143,6 +143,30 @@ struct WeatherGeneral: View {
                                 }
                             }.padding(.top, UIScreen.main.bounds.height / 3)
                         }
+                        .navigationBarItems(leading:
+                             Button("Выход") {
+                                print("Вышли")
+                                isAlert = true
+                             }
+                            .alert(isPresented: $isAlert) {
+                                    Alert(
+                                        title: Text("Выход"),
+                                        message: Text("Вы уверены, что хотите выйти?"),
+                                        primaryButton: .default(
+                                            Text("Да"),
+                                            action: {
+                                                authData.exit()
+                                            }
+                                        ),
+                                        secondaryButton: .destructive(
+                                            Text("Нет"),
+                                            action: {
+                                                
+                                            }
+                                        )
+                                    )
+                                }
+                        ).navigationBarBackButtonHidden(true)
                     } else {
                         Text("Ошибка загрузки данных!")
                             .font(montserratRegular)

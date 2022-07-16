@@ -1,5 +1,4 @@
 import Foundation
-import Swinject
 
 struct Weather: Decodable {
     let now_dt: String
