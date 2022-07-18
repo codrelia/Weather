@@ -12,7 +12,6 @@ struct Registration: View {
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
-        NavigationView {
             VStack(alignment: .center, spacing: 20) {
                 Text("Регистрация")
                     .font(.custom("Montserrat-Medium", size: 24))
@@ -63,7 +62,7 @@ struct Registration: View {
                 VStack(alignment: .center) {
                     if (username == "" || password == "" || redoPassword == "" || (password != redoPassword)) {
                         Button(action: {
-                            userViewModel.addNewAccount(username, password)
+                            userViewModel.addNewAccount(username, password, false)
                         }){
                             Text("Зарегистрироваться").padding([.leading, .trailing], 60)
                                 .padding([.top, .bottom], 5)
@@ -85,7 +84,7 @@ struct Registration: View {
                             } else {
                                 isActiveText = false
                                 isNewView = true
-                                userViewModel.addNewAccount(username, password)
+                                userViewModel.addNewAccount(username, password, false)
                             }
                         }){
                             Text("Зарегистрироваться").padding([.leading, .trailing], 60)
@@ -114,7 +113,6 @@ struct Registration: View {
             }
             .padding(.bottom, 100)
         }
-    }
 }
 
 struct Registration_Previews: PreviewProvider {

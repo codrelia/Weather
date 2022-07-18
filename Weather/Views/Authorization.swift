@@ -1,5 +1,7 @@
 import SwiftUI
 import RealmSwift
+import SwiftyVK
+
 
 struct Authorization: View {
     
@@ -11,8 +13,14 @@ struct Authorization: View {
     @State private var isNewView = false
     @State private var isNewViewResetPassword = false
     
+    @ObservedObject var signWithVK = SignVK()
+    
+    init() {
+        inits()
+    }
+    
     var body: some View {
-        NavigationView {
+
             VStack(alignment: .center, spacing: 20) {
                 Text("Авторизация")
                     .font(.custom("Montserrat-Medium", size: 24))
@@ -62,13 +70,16 @@ struct Authorization: View {
                     else {
                         NavigationLink(destination: WeatherGeneral().navigationBarBackButtonHidden(true), isActive: $isNewView) {
                             Button(action: {
-                                if (userViewModel.accountVerification(username, password)) {
+                                if userViewModel.accountVerification(username, password, false, "") {
                                     isFoundOfUser = true
                                     isNewView = true
                                 } else {
                                     isFoundOfUser = false
                                     isNewView = false
                                 }
+                                print("----------------------------------------------------------")
+                                print("USERNAME: \(authData.username), PASSWORD: \(authData.password), ID: \(authData.id)")
+                                print("----------------------------------------------------------")
                             }){
                                 Text("Войти").padding([.leading, .trailing], 60)
                                     .padding([.top, .bottom], 5)
@@ -98,26 +109,30 @@ struct Authorization: View {
                         NavigationLink(destination: PasswordChange().navigationBarBackButtonHidden(true), isActive: $isNewViewResetPassword) {
                         Button(action: {
                             isNewViewResetPassword = true
-                        }) {                    Text("Вспомнить пароль")
+                        }) {
+                            Text("Вспомнить пароль")
                                 .font(montserratMedium)
                         }
                     }.padding(.top, 10)
                     }
-                /*
                 VStack{
                     Text("Войти с другим аккаунтом")
                         .font(montserratRegular)
-                    Button(action: {}){
-                        Image.init("vk_logo")
+                    NavigationLink(destination: WeatherGeneral().navigationBarBackButtonHidden(true), isActive: $isNewView) {
+                            Button(action: {
+                                async {isNewView = await get()}
+                            })
+                        {
+                                Image.init("vk_logo")
                     }
                 }
                 .padding(.bottom, 20)
                 .padding(.top, 50)
-                */
             }
         }
     }
 }
+    
 struct Authorization_Previews: PreviewProvider {
     static var previews: some View {
         Authorization()

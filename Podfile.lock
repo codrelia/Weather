@@ -10,12 +10,14 @@ PODS:
   - Realm/Headers (10.28.2)
   - RealmSwift (10.28.2):
     - Realm (= 10.28.2)
+  - SwiftyJSON (4.3.0)
   - SwiftyVK (3.4.2)
 
 DEPENDENCIES:
   - Locksmith
   - Moya/Combine (~> 15.0)
   - RealmSwift
+  - SwiftyJSON (~> 4.0)
   - SwiftyVK
 
 SPEC REPOS:
@@ -25,6 +27,7 @@ SPEC REPOS:
     - Moya
     - Realm
     - RealmSwift
+    - SwiftyJSON
     - SwiftyVK
 
 SPEC CHECKSUMS:
@@ -33,8 +36,9 @@ SPEC CHECKSUMS:
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   Realm: e617c54ad0f566b3d0f6a2abae7010de05f252ac
   RealmSwift: 8a516a8759d80d52ebcec1ff1076f5f5159f98b2
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   SwiftyVK: 5005dac6e85f7b0fd44e21ed2f021a397dff4cab
 
-PODFILE CHECKSUM: 8251fe84d913a2361841cabc123b698e7ee774a6
+PODFILE CHECKSUM: 5690aaf4f0819446b3998ba56fa9aa8139f47a3e
 
 COCOAPODS: 1.11.3

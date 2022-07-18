@@ -1,7 +1,8 @@
 import Foundation
 import RealmSwift
+import SwiftyVK
 
-let realm = try! Realm()
+let realmDatabase = try! Realm()
 
 var userViewModel: UserViewModel = UserViewModel()
 
@@ -14,22 +15,29 @@ class UserViewModel {
         read()
     }
     
-    func addNewAccount(_ username: String, _ password: String) {
+    func addNewAccount(_ username: String, _ password: String, _ isVK: Bool) {
         model = UserModel()
         model.username = username
         model.password = password
+        model.isVK = isVK
         
-        try! realm.write {
-            realm.add(model)
+        if isVK {
+            model.id = VK.sessions.default.id
         }
+        
+        try! realmDatabase.write {
+            realmDatabase.add(model)
+        }
+        
+        authData.savingData(username, password, false, "")
         
         read()
     }
     
-    func accountVerification(_ username: String, _ password: String) -> Bool {
+    func accountVerification(_ username: String, _ password: String, _ isVK: Bool, _ id: String) -> Bool {
         for i in users {
-            if i.username == username && i.password == password {
-                authData.savingData(username, password)
+            if i.username == username && i.password == password && i.isVK == isVK && i.id == id {
+                authData.savingData(username, password, isVK, id)
                 return true
             }
         }
@@ -38,7 +46,7 @@ class UserViewModel {
     
     func read() {
         users = []
-        let data = realm.objects(UserModel.self)
+        let data = realmDatabase.objects(UserModel.self)
         for usersFromDB in data {
             users.append(usersFromDB)
         }
@@ -52,8 +60,8 @@ class UserViewModel {
     
     func deleteAll() {
         authData.exit()
-        try! realm.write {
-          realm.deleteAll()
+        try! realmDatabase.write {
+          realmDatabase.deleteAll()
         }
     }
     
@@ -67,25 +75,25 @@ class UserViewModel {
     }
     
     func changeThePassword(_ username: String, _ newPassword: String) {
-        let data = realm.objects(UserModel.self)
+        let data = realmDatabase.objects(UserModel.self)
         for usersFromDB in data {
             Swift.print(usersFromDB)
             if usersFromDB.username == username {
                 model = usersFromDB
             }
         }
-        try! realm.write {
-            realm.delete(model)
+        try! realmDatabase.write {
+            realmDatabase.delete(model)
         }
         model = UserModel()
         model.username = username
         model.password = newPassword
-        try! realm.write {
-            realm.add(model)
+        try! realmDatabase.write {
+            realmDatabase.add(model)
         }
         read()
         
-        authData.savingData(username, newPassword)
+        authData.savingData(username, newPassword, false, "")
         
     }
 }

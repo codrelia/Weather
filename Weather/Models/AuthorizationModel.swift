@@ -5,75 +5,56 @@ import SwiftyVK
 class AuthorizationModel {
     var username: String?
     var password: String?
+    var isVK: Bool = false
+    var id: String?
     
     init() {
         let accountData = Locksmith.loadDataForUserAccount(userAccount: "WeatherApp")
         if accountData != nil && accountData!["Login"] as? String != "" {
             username = accountData!["Login"] as? String
             password = accountData!["Password"] as? String
+        } else if accountData!["ID"] as? String != "" {
+            username = ""
+            password = ""
+            isVK = true
+            id = accountData!["ID"] as? String
         } else {
-            updateDataLocksmith("", "")
+            updateDataLocksmith("", "", "")
             
             username = nil
             password = nil
         }
     }
     
-    func savingData(_ newUsername: String, _ newPassword: String) {
+    func savingData(_ newUsername: String, _ newPassword: String, _ isVK: Bool, _ id: String) {
         username = newUsername
         password = newPassword
         
-        updateDataLocksmith(newUsername, newPassword)
+        self.isVK = isVK
+        self.id = id
+        
+        updateDataLocksmith(newUsername, newPassword, id)
     }
     
     func exit() {
         username = nil
         password = nil
         
-        updateDataLocksmith("", "")
+        updateDataLocksmith("", "", "")
     }
     
-    private func updateDataLocksmith(_ login: String, _ password: String) {
+    private func updateDataLocksmith(_ login: String, _ password: String, _ id: String) {
         do {
-            try Locksmith.updateData(data: ["Login": login, "Password": password], forUserAccount: "WeatherApp")
+            try Locksmith.updateData(data: ["Login": login, "Password": password, "ID": id], forUserAccount: "WeatherApp")
         } catch {
             print("Error in update data in keychain")
         }
     }
     
     func isHavingData() -> Bool {
-        if username != nil && password != nil {
+        if (username != nil && password != nil) || (id != nil && isVK == true) {
             return true
         }
         return false
-    }
-}
-
-class VKDelegateExample: SwiftyVKDelegate {
-    
-    let appID = "8208968"
-    
-    init() {
-            VK.setUp(appId: appID, delegate: self)
-        }
-
-    func vkNeedsScopes(for sessionId: String) -> Scopes {
-        return Scopes()
-    }
-
-    func vkNeedToPresent(viewController: VKViewController) {
-        print("нужно отобразить")
-    }
-
-    func vkTokenCreated(for sessionId: String, info: [String : String]) {
-        print("token created in session \(sessionId) with info \(info)")
-    }
-
-    func vkTokenUpdated(for sessionId: String, info: [String : String]) {
-        print("token updated in session \(sessionId) with info \(info)")
-    }
-
-    func vkTokenRemoved(for sessionId: String) {
-        print("token removed in session \(sessionId)")
     }
 }

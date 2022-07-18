@@ -17,6 +17,8 @@
 		3B5725AA286228F8009FA225 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5725A9286228F8009FA225 /* Authorization.swift */; };
 		3B5725AC286228F9009FA225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B5725AB286228F9009FA225 /* Assets.xcassets */; };
 		3B5725AF286228F9009FA225 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B5725AE286228F9009FA225 /* Preview Assets.xcassets */; };
+		3B7ECDE82882BD2300791C7C /* VKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ECDE72882BD2300791C7C /* VKView.swift */; };
+		3B7ECDEB2882CF0100791C7C /* VKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ECDEA2882CF0100791C7C /* VKDelegate.swift */; };
 		3B95C0362880641C000564FC /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95C0352880641C000564FC /* AuthorizationViewModel.swift */; };
 		3B95C03828806429000564FC /* WeatherGeneralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95C03728806429000564FC /* WeatherGeneralModel.swift */; };
 		3BB19855287325AA0072D0D8 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 3BB19854287325AA0072D0D8 /* Fonts */; };
@@ -43,6 +45,8 @@
 		3B5725A9286228F8009FA225 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		3B5725AB286228F9009FA225 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B5725AE286228F9009FA225 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3B7ECDE72882BD2300791C7C /* VKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKView.swift; sourceTree = "<group>"; };
+		3B7ECDEA2882CF0100791C7C /* VKDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKDelegate.swift; sourceTree = "<group>"; };
 		3B95C0352880641C000564FC /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		3B95C03728806429000564FC /* WeatherGeneralModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherGeneralModel.swift; sourceTree = "<group>"; };
 		3BB19853287325900072D0D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 				3B19643F28721D1C00648DD3 /* WeatherGeneral.swift */,
 				3B19644128721D2900648DD3 /* WeatherDetail.swift */,
 				3BD90312288066870005ABCA /* PasswordСhange.swift */,
+				3B7ECDE72882BD2300791C7C /* VKView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 		3B5725A6286228F8009FA225 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				3B7ECDE92882CEEA00791C7C /* Delegates */,
 				3BEBEF40287B03A000929204 /* Location */,
 				3BB19854287325AA0072D0D8 /* Fonts */,
 				3BB19853287325900072D0D8 /* Info.plist */,
@@ -143,6 +149,14 @@
 				3B5725AE286228F9009FA225 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3B7ECDE92882CEEA00791C7C /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				3B7ECDEA2882CF0100791C7C /* VKDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		3BEBEF40287B03A000929204 /* Location */ = {
@@ -182,7 +196,7 @@
 				3B5725A0286228F8009FA225 /* Sources */,
 				3B5725A1286228F8009FA225 /* Frameworks */,
 				3B5725A2286228F8009FA225 /* Resources */,
-				38B2CC809A462A9220909710 /* [CP] Embed Pods Frameworks */,
+				C3ED8416EC983B0B16CD7F7B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,23 +254,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		38B2CC809A462A9220909710 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3BA2325328662D4900ECCF40 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -296,6 +293,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C3ED8416EC983B0B16CD7F7B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -308,9 +322,11 @@
 				3B95C0362880641C000564FC /* AuthorizationViewModel.swift in Sources */,
 				3B19644228721D2900648DD3 /* WeatherDetail.swift in Sources */,
 				3B19644028721D1C00648DD3 /* WeatherGeneral.swift in Sources */,
+				3B7ECDEB2882CF0100791C7C /* VKDelegate.swift in Sources */,
 				3BD90315288079E60005ABCA /* AuthorizationModel.swift in Sources */,
 				3B19643E28721CEC00648DD3 /* Registration.swift in Sources */,
 				3B493A3B287EEAE400A1C534 /* WeatherGeneralViewModel.swift in Sources */,
+				3B7ECDE82882BD2300791C7C /* VKView.swift in Sources */,
 				3B493A57287F272A00A1C534 /* WeatherDetailViewModel.swift in Sources */,
 				3BEBEF42287B05ED00929204 /* LocationManager.swift in Sources */,
 				3BB1985728732CDA0072D0D8 /* UserModel.swift in Sources */,
